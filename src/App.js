@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import List from "./List";
 import Alert from "./Alert";
 
-const getLocalStorage=()=>{
-  let list = localStorage.getItem('list');
+const getLocalStorage = () => {
+  let list = localStorage.getItem("list");
   if (list) {
-    return JSON.parse(localStorage.getItem('list'))
-  }else{
-    return []
+    return JSON.parse(localStorage.getItem("list"));
+  } else {
+    return [];
   }
-}
+};
 function App() {
   const [name, setName] = useState("");
   const [list, setList] = useState(getLocalStorage);
@@ -25,16 +25,16 @@ function App() {
     } else if (name && isEditing) {
       setList(
         list.map((item) => {
-          if ((item.id === editId)) {
+          if (item.id === editId) {
             return { ...item, title: name };
           }
           return item;
         })
       );
-      setName('')
-      setEditId(null)
-      setIsEditing(false)
-      showAlert(true,'success','value changed')
+      setName("");
+      setEditId(null);
+      setIsEditing(false);
+      showAlert(true, "success", "value changed");
     } else {
       showAlert(true, "success", "item added to the list");
       const newItem = { id: new Date().getTime().toString(), title: name };
@@ -60,9 +60,8 @@ function App() {
     setName(specificItem.title);
   };
   useEffect(() => {
-    localStorage.setItem('list',JSON.stringify(list))
-    
-  }, [list])
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
   return (
     <section className="section-center">
       <form className="grocery-form" onSubmit={handleSubmit}>
