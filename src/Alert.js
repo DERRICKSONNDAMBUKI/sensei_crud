@@ -4,6 +4,7 @@ const Alert = ({ type, msg, removeAlert ,list}) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       removeAlert();
+      // ricky has bugs,add useCallEffect to the parent componen
     }, 3000);
     return () => {
       clearTimeout(timeout);
